@@ -38,11 +38,19 @@ public class CashRegister
       Computes the change due and resets the machine for the next customer.
       @return the change due to the customer
    */
-   public double giveChange()
+   public int giveChange(Coin coinType)
    {
-      double change = payment - purchase;
-      purchase = 0;
-      payment = 0;
-      return change;
+      if(payment < purchase)
+      {
+          return 0;
+      }
+      int count = (int)((payment-purchase)/coinType.getValue());
+      
+      if(payment==purchase)
+      {
+          payment = 0;
+          purchase = 0;
+      }
+      return count;
    }
 }

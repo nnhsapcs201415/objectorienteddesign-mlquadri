@@ -29,9 +29,11 @@ public class ComboLockTest
             return;
          }
          if(turningRight)
+         {
             lock.turnRight(ticks);
-         else
+         }else{
             lock.turnLeft(ticks);
+         }
          turningRight = !turningRight;
          opened = lock.open();
       }
