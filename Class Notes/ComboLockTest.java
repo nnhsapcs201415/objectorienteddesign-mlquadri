@@ -10,29 +10,35 @@ public class ComboLockTest
    {
       Random randomizer = new Random();
 
-      int secret1 = 12;//randomizer.nextInt(40);
-      int secret2 = 12;//randomizer.nextInt(40);
-      int secret3 = 12;//randomizer.nextInt(40);
+      int secret1 = 1;//randomizer.nextInt(40);
+      int secret2 = 39;//randomizer.nextInt(40);
+      int secret3 = 1;//randomizer.nextInt(40);
 
       ComboLock lock = new ComboLock(secret1, secret2, secret3);
 
       Scanner in = new Scanner(System.in);
       boolean opened = false;
       boolean turningRight = true;
+      int ticks;
       while(!opened)
       {
          System.out.println("Enter number of ticks to turn to the " + (turningRight ? "right" : "left") + " 0 - 39. Enter an invalid number to quit.");
-         int ticks = in.nextInt();
+         System.out.println(lock.getValue());
+         ticks = in.nextInt();
          if((ticks < 0) || (ticks > 39))
          {
-            System.out.println("Invalid entry. The program will now exit.");
-            return;
+            System.out.println("Invalid entry. The program will now restart.");
+            lock.reset();
          }
          if(turningRight)
          {
-            lock.turnRight(ticks);
+             ticks-=ticks;
+             lock.turnRight(ticks);
+             System.out.println(lock.getValue());
          }else{
-            lock.turnLeft(ticks);
+             ticks+=ticks;
+             lock.turnLeft(ticks);
+             System.out.println(lock.getValue());
          }
          turningRight = !turningRight;
          opened = lock.open();
