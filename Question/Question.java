@@ -16,6 +16,17 @@ public class Question
    }
 
    /**
+   *  Constructs a question with inputed question text
+   *  
+   *  @pram questionText
+   */
+   public Question(questionText) 
+   {
+      text = questionText;
+      answer = "";
+   }
+   
+   /**
       Sets the question text.
       @param questionText the text of this question
    */
