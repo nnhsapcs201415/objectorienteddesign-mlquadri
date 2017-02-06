@@ -27,12 +27,14 @@ public class IDCard extends Card
     {
         return "IDCard[Name="+super.getName()+ "] [idNumber="+idNumber+"]";
     }
-    
+    
+
     public boolean equals(Object otherObject)
     {
-        if(this.getClass()==otherObject.getClass())
+        if(otherObject instanceof IDCard)
         {
-            IDCard other=(IDCard)();
+            IDCard other = (IDCard)otherObject;
+            return getName().equals(other.getName()) && idNumber.equals(other.idNumber);
         }
         return false;
     }
