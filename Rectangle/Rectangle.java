@@ -10,15 +10,14 @@
  */
 public class Rectangle
 {
-    /** description of instance variable x (add comment for each instance variable) */
-    private int x;
-
+    private int hight;
+    private int width;
     /**
      * Default constructor for objects of class Rectangle
      */
-    public Rectangle()
+    public Rectangle(int inHight,int inWidth)
     {
-        // initialise instance variables
-        x = 0;
+        hight=inHight;
+        width=inWidth;
     }
 }
