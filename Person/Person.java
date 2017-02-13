@@ -10,7 +10,7 @@ import java.util.Collections;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Person implements Comparable
+public class Person implements Comparable<Person>
 {
     /** description of instance variable x (add comment for each instance variable) */
     private String name;
@@ -27,16 +27,9 @@ public class Person implements Comparable
         return name;
     }
 
-    public int compareTo(Object obj)
+    public int compareTo(Person obj)
     {
-        if(obj instanceof Person)
-        {
-            Person person = (Person) obj;
-            return name.compareTo(person.getName());
-        }
-        else{
-            return 0;
-        }
+        return name.compareTo(person.getName());
     }
 
     public static void main(String[] args)
