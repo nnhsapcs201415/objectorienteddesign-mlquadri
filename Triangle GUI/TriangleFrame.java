@@ -20,18 +20,23 @@ public class TriangleFrame extends JFrame
             {
                 int x = event.getX();
                 int y = event.getY();
-                scene.setXY(x, y);
+                scene.setXY1(x, y);
+                pressed++;
             }else if(pressed<2)
             {
                 int x = event.getX();
                 int y = event.getY();
                 scene.setXY2(x, y);
-            }else if(pressed<2)
+                pressed++;
+            }else if(pressed<3)
             {
                 int x = event.getX();
                 int y = event.getY();
                 scene.setXY3(x, y);
+                pressed++;
             }else{
+                scene.clear();
+                pressed=0;
             }
         }
         // Do-nothing methods
