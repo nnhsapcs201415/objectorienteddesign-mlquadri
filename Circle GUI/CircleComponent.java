@@ -1,31 +1,32 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
+import java.awt.geom.Ellipse2D;
 /**
- * This component displays a triangle that can be moved.
- * AND
  * Write a program that allows the user to specify a circle with two mouse presses,
  * the first one on the center and the second on a point on the periphery. Hint: In the
  * mouse press handler, you must keep track of whether you already received the cen-
  * ter point in a previous mouse press.
  */
 
-public class TriangleComponent extends JComponent
+public class CircleComponent extends JComponent
 {
-    private int[] x= new int[3];
-    private int[] y= new int[3];
+    private int[] x= new int[2];
+    private int[] y= new int[2];
     private boolean print1;
     private boolean print2;
-    private boolean print3;
-    public TriangleComponent()
+    private int radius;
+    private int centerx;
+    private int centery;
+    private Ellipse2D.Double circle;
+    public CircleComponent()
     {
-
     }
 
     public void setXY1(int inx, int iny)
     {
-        x[0]=inx;
-        y[0]=iny;
+        centerx = inx;
+        centery = iny;
         print1=true;
     }
 
@@ -33,26 +34,33 @@ public class TriangleComponent extends JComponent
     {
         x[1]=inx;
         y[1]=iny;
-        print2=true;
     }
-
-    public void setXY3(int inx, int iny)
+    
+    public void setCircle()
     {
-        x[2]=inx;
-        y[2]=iny;
-        print3=true;
+        radius = Math.cbrt( Math.exp( (centery-y[1]), 2) + Math.exp( (centerx-x[1]),2 ) );
+        /*
+         * (x[0],y[0])     x[1]
+         *            #  #  #  #  #
+         *            #           #
+         *      Y[1]  #     *     #
+         *            #     (cen) #
+         *            #  #  #  #  #
+         */
+        //circle=new Ellipse2D.Double(x[1],y[1],(x[0]-x[1]),(y[0]-y[1]));
+        
+        print2=true;
     }
 
     public void clear()
     {
-        for(int i=0; i<3; i++)
+        for(int i=0; i<2; i++)
         {
             x[i]=0;
             y[i]=0;
         }
         print1=false;
         print2=false;
-        print3=false;
     }
 
     public void paintComponent(Graphics g)
@@ -60,14 +68,10 @@ public class TriangleComponent extends JComponent
         Graphics2D g2 = (Graphics2D) g;
         if(print1==true)
         {
-            g2.drawLine(x[0], y[0], x[0], y[0]);
+            g2.drawLine(centerx, centery, centerx, centery);
         }if(print2==true)
         {
-            g2.drawLine(x[0], y[0], x[1], y[1]);
-        }if(print3==true)
-        {
-            g2.drawLine(x[1], y[1], x[2], y[2]);
-            g2.drawLine(x[0], y[0], x[2], y[2]);
+            g2.draw(circle);
         }
         repaint();
     }

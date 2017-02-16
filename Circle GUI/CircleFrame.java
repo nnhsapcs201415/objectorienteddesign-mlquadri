@@ -4,12 +4,12 @@ import javax.swing.JFrame;
 /**
 This frame contains a moving rectangle.
  */
-public class TriangleFrame extends JFrame
+public class CircleFrame extends JFrame
 {
     private static final int FRAME_WIDTH = 300;
     private static final int FRAME_HEIGHT = 400;
     private int pressed=0;
-    private TriangleComponent scene;
+    private CircleComponent scene;
     class MousePressListener implements MouseListener
     {
         public void mousePressed(MouseEvent event)
@@ -18,6 +18,7 @@ public class TriangleFrame extends JFrame
             {
                 int x = event.getX();
                 int y = event.getY();
+                repaint();
                 scene.setXY1(x, y);
                 pressed++;
             }else if(pressed<2)
@@ -25,15 +26,12 @@ public class TriangleFrame extends JFrame
                 int x = event.getX();
                 int y = event.getY();
                 scene.setXY2(x, y);
-                pressed++;
-            }else if(pressed<3)
-            {
-                int x = event.getX();
-                int y = event.getY();
-                scene.setXY3(x, y);
+                repaint();
+                scene.setCircle();
                 pressed++;
             }else{
                 scene.clear();
+                repaint();
                 pressed=0;
             } 
         }
@@ -42,9 +40,9 @@ public class TriangleFrame extends JFrame
         public void mouseEntered(MouseEvent event){}
         public void mouseExited(MouseEvent event){}
     }
-    public TriangleFrame()
+    public CircleFrame()
     {
-        scene = new TriangleComponent();
+        scene = new CircleComponent();
         add(scene);
         MouseListener listener = new MousePressListener();
         scene.addMouseListener(listener);
