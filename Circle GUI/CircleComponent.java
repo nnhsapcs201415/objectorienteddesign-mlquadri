@@ -15,6 +15,7 @@ public class CircleComponent extends JComponent
     private int[] y= new int[2];
     private boolean print1;
     private boolean print2;
+    private double doubleRadius;
     private int radius;
     private int centerx;
     private int centery;
@@ -38,7 +39,11 @@ public class CircleComponent extends JComponent
     
     public void setCircle()
     {
-        radius = Math.cbrt( Math.exp( (centery-y[1]), 2) + Math.exp( (centerx-x[1]),2 ) );
+        doubleRadius = Math.sqrt( Math.pow( (centery-y[1]), 2) + Math.pow( (centerx-x[1]),2) );
+        radius=(int) doubleRadius;
+        
+        x[0]=centerx-radius;
+        y[0]=centery-radius;
         /*
          * (x[0],y[0])     x[1]
          *            #  #  #  #  #
@@ -47,7 +52,7 @@ public class CircleComponent extends JComponent
          *            #     (cen) #
          *            #  #  #  #  #
          */
-        //circle=new Ellipse2D.Double(x[1],y[1],(x[0]-x[1]),(y[0]-y[1]));
+        circle=new Ellipse2D.Double(x[0],y[0],(centerx-x[1]),(centery-y[1]));
         
         print2=true;
     }
