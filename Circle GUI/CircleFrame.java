@@ -10,24 +10,18 @@ public class CircleFrame extends JFrame
     private static final int FRAME_HEIGHT = 400;
     private int pressed=0;
     private CircleComponent scene;
+    int x;
+    int y;
     class MousePressListener implements MouseListener
     {
         public void mousePressed(MouseEvent event)
         {
             if (pressed<1)
             {
-                int x = event.getX();
-                int y = event.getY();
+                x = event.getX();
+                y = event.getY();
                 repaint();
                 scene.setXY1(x, y);
-                pressed++;
-            }else if(pressed<2)
-            {
-                int x = event.getX();
-                int y = event.getY();
-                scene.setXY2(x, y);
-                repaint();
-                scene.setCircle();
                 pressed++;
             }else{
                 scene.clear();
@@ -35,7 +29,17 @@ public class CircleFrame extends JFrame
                 pressed=0;
             } 
         }
-        public void mouseReleased(MouseEvent event){}
+        public void mouseReleased(MouseEvent event){
+            int x = event.getX();
+            int y = event.getY();
+            scene.setXY2(x, y);
+            repaint();
+            scene.setCircle();
+        }
+        public void mouseDragged(MouseEvent event) {
+            int radius= (int) Math.sqrt( Math.pow( (x-event.getX()), 2) + Math.pow( (y-event.getY()),2) );
+            scene.setRadius(radius);
+        }
         public void mouseClicked(MouseEvent event){}
         public void mouseEntered(MouseEvent event){}
         public void mouseExited(MouseEvent event){}

@@ -8,14 +8,12 @@ import java.awt.geom.Ellipse2D;
  * mouse press handler, you must keep track of whether you already received the cen-
  * ter point in a previous mouse press.
  */
-
 public class CircleComponent extends JComponent
 {
     private int[] x= new int[2];
     private int[] y= new int[2];
     private boolean print1;
     private boolean print2;
-    private double doubleRadius;
     private int radius;
     private int centerx;
     private int centery;
@@ -37,11 +35,13 @@ public class CircleComponent extends JComponent
         y[1]=iny;
     }
     
-    public void setCircle()
+    public void setRadius(int inradius)
     {
-        doubleRadius = Math.sqrt( Math.pow( (centery-y[1]), 2) + Math.pow( (centerx-x[1]),2) );
-        radius=(int) doubleRadius;
-        
+        radius=inradius;
+    }
+    
+    public void setCircle()
+    {   
         x[0]=centerx-radius;
         y[0]=centery-radius;
         /*
@@ -52,7 +52,7 @@ public class CircleComponent extends JComponent
          *            #     (cen) #
          *            #  #  #  #  #
          */
-        circle=new Ellipse2D.Double(x[0],y[0],(centerx-x[1]),(centery-y[1]));
+        circle=new Ellipse2D.Double(x[0],y[0],(2*radius),(2*radius) );
         
         print2=true;
     }
