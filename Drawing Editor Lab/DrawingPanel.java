@@ -12,7 +12,6 @@ public class DrawingPanel extends JPanel
 {
     Color fillColor;
     
-
     /**
      * Default constructor for objects of class DrawingPanel
      */
@@ -20,7 +19,6 @@ public class DrawingPanel extends JPanel
     {
          
     }
-    
     /**
      * Invoked when the "Pick Color" button is clicked. Displays a JColorChooser and sets the
      *  selected color as the new fill color. Leaves the fill color unchanged if the user clicks
@@ -36,6 +34,4 @@ public class DrawingPanel extends JPanel
             this.fillColor = selectedColor;
         }
     }
-
-    
 }
