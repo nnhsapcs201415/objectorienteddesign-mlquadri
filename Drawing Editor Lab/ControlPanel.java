@@ -24,22 +24,46 @@ public class ControlPanel extends JPanel
     public ControlPanel( DrawingPanel canvas)
     {
         this.canvas = canvas;
-        
-        BorderLayout grid= new BorderLayout();
-        JButton Color = new JButton("Pick Color");
-        canvas.add(Color);
-        JButton Circle = new JButton("Add Circle");
-        canvas.add(Circle);
-        JButton Square = new JButton("Add Square");
-        canvas.add(Square);
-        canvas.setSize(100, 100);
+
+        JButton color = new JButton("Pick Color");
+        add(color);
+        JButton circle = new JButton("Add Circle");
+        add(circle);
+        JButton square = new JButton("Add Square");
+        add(square);
+
+        ActionListener listener = new ActionListenerClass();
+        color.addActionListener(listener);
+        circle.addActionListener(listener);
+        square.addActionListener(listener);
+
         //
         // ... create and add buttons and selected color panel
         //
-        
+
     }
 
     //
     // ... create inner class that implements the ActionListener interface to respond to button clicks
     //
+    public class ActionListenerClass implements ActionListener
+    {
+        /**
+         * Default constructor for objects of class Circle
+         */
+        public ActionListenerClass()
+        {
+        }
+        public void actionPerformed(ActionEvent event)
+        {
+            if( event.getActionCommand().equals("Pick Color") )
+            {
+                canvas.pickColor();
+            }else if(event.getActionCommand().equals("Add Circle")){
+                //canvas.addCircle();
+            }else{
+                //canvas.addSquare();
+            }
+        }
+    }
 }

@@ -21,9 +21,10 @@ public class DrawingEditorFrame extends JFrame
         
         // add the canvas and controls panels to the frame
         // read the BorderLayout class documentation for specifics
-        
-        
-        
+        BorderLayout grid= new BorderLayout();
+        add(controls, grid.SOUTH);
+        add(canvas, grid.WEST);
+        setSize(100, 100);
         //
         // ... insert code here
         //
