@@ -1,3 +1,6 @@
+import java.awt.geom.Point2D;
+import java.awt.Graphics2D;
+import java.awt.Color;
 /**
  * Write a description of abstract class DrawingShape here.
  * 
@@ -6,31 +9,31 @@
  */
 public abstract class DrawingShape
 {
-    /**
-     * Default constructor for objects of class DrawingShape
-     */
+    Point2D.Double center;
+    double radius;
+    Color color;
     DrawingShape(Point2D.Double center, double radius, Color color)  
-    { 
-    }
-    public abstract Point2D.Double getCenter()
     {
+        this.center=center;
+        this.radius=radius;
+        this.color=color;
     }
-    public abstract double getRadius()
+    public Point2D.Double getCenter()
     {
+        return center;
     }
-    public abstract void move(double x, double y)
+    public double getRadius()
     {
+        return radius;
     }
-    public abstract void setRadius(double r)
+    public void move(double x, double y)
     {
+        center.setLocation(x, y);
     }
-    public abstract boolean isInside(Point2D.Double point)
+    public void setRadius(double r)
     {
+        radius=r;
     }
-    public abstract boolean isOnBorder(Point2D.Double point)
-    {
-    }
-    public abstract void draw(Graphics2D g2, boolean filled)
-    {
-    }
+    public abstract boolean isInside(Point2D.Double point);
+    public abstract void draw(Graphics2D g2, boolean filled);
 }
