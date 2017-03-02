@@ -34,6 +34,11 @@ public class Circle extends DrawingShape
     public void move(double x, double y)
     {
         super.move(x, y);
+        circle=new Ellipse2D.Double(
+            super.getCenter().getX()+super.getRadius(),
+            super.getCenter().getY()+super.getRadius(),
+            2*super.getRadius(),
+            2*super.getRadius());
     }
     public void setRadius(double r)
     {
@@ -41,20 +46,7 @@ public class Circle extends DrawingShape
     }
     public boolean isInside(Point2D.Double point)
     {
-        if( 
-            (point.getX()) <= (super.getCenter().getX()+super.getRadius()) 
-            && 
-            (point.getX()) >= (super.getCenter().getX()-super.getRadius()) 
-            &&
-            (point.getY()) <= (super.getCenter().getY()+super.getRadius()) 
-            &&
-            (point.getY()) >= (super.getCenter().getY()-super.getRadius()) 
-            )
-        {
-            return true;
-        }else{
-            return false;
-        }
+        return circle.contains(point);
     }
     public void draw(Graphics2D g2, boolean filled)
     {

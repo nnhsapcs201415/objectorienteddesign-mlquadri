@@ -11,14 +11,14 @@ import java.awt.Color;
  */
 public class Square extends DrawingShape
 {
-    Rectangle2D.Double box;
+    Rectangle2D.Double square;
     /**
      * Default constructor for objects of class Square
      */
     public Square(Point2D.Double center, double radius, Color color)
     {
         super(center,radius, color);
-        box = new Rectangle2D.Double(super.getCenter().getX()+super.getRadius(),
+        square = new Rectangle2D.Double(super.getCenter().getX()+super.getRadius(),
             super.getCenter().getY()+super.getRadius(),
             2*super.getRadius(),
             2*super.getRadius());
@@ -34,6 +34,10 @@ public class Square extends DrawingShape
     public void move(double x, double y)
     {
         super.move(x, y);
+        square = new Rectangle2D.Double(super.getCenter().getX()+super.getRadius(),
+            super.getCenter().getY()+super.getRadius(),
+            2*super.getRadius(),
+            2*super.getRadius());
     }
     public void setRadius(double r)
     {
@@ -41,28 +45,15 @@ public class Square extends DrawingShape
     }
     public boolean isInside(Point2D.Double point)
     {
-        if( 
-            (point.getX()) <= (super.getCenter().getX()+super.getRadius()) 
-            && 
-            (point.getX()) >= (super.getCenter().getX()-super.getRadius()) 
-            &&
-            (point.getY()) <= (super.getCenter().getY()+super.getRadius()) 
-            &&
-            (point.getY()) >= (super.getCenter().getY()-super.getRadius()) 
-            )
-        {
-            return true;
-        }else{
-            return false;
-        }
+        return square.contains(point);
     }
     public void draw(Graphics2D g2, boolean filled)
     {
-        g2.draw(box);
+        g2.draw(square);
         if(filled == true)
         {
             g2.setColor(Color.RED);
-            g2.fill(box);
+            g2.fill(square);
         }
     }
 }

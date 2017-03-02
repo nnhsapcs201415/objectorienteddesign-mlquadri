@@ -1,10 +1,13 @@
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
+import java.awt.geom.Point2D;
+import java.awt.Graphics2D;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import java.awt.Color;
 /**
  * The panel that contains the controls and indicators for the drawing editor
  * 
@@ -13,11 +16,8 @@ import javax.swing.JLabel;
  */
 public class ControlPanel extends JPanel
 {
-    //
-    // .. add additional instance variables
-    //
     private DrawingPanel canvas;
-
+    private final Point2D.Double CENTER = new Point2D.Double(0,0);
     /**
      * Constructor for objects of class ControlPanel
      */
@@ -60,10 +60,11 @@ public class ControlPanel extends JPanel
             {
                 canvas.pickColor();
             }else if(event.getActionCommand().equals("Add Circle")){
-                //canvas.addCircle();
+                canvas.addCircle(CENTER,1,canvas.getColor());
             }else{
-                //canvas.addSquare();
+                canvas.addSquare(CENTER,1,canvas.getColor());
             }
+            canvas.paintComponent(Graphics2D);
         }
     }
 }
