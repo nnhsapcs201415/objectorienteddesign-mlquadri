@@ -34,10 +34,13 @@ public class Square extends DrawingShape
     public void move(double x, double y)
     {
         super.move(x, y);
-        square = new Rectangle2D.Double(super.getCenter().getX()+super.getRadius(),
-            super.getCenter().getY()+super.getRadius(),
-            2*super.getRadius(),
-            2*super.getRadius());
+        square = new Rectangle2D.Double(1,1,2,2);
+        
+        //super.getCenter().getX()+super.getRadius(),
+        //    super.getCenter().getY()+super.getRadius(),
+        //    2*super.getRadius(),
+        //    2*super.getRadius());
+       
     }
     public void setRadius(double r)
     {

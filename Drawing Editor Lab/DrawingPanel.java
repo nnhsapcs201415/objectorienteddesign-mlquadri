@@ -1,6 +1,9 @@
+import java.awt.geom.Rectangle2D;
 import javax.swing.JColorChooser;
+import java.util.ArrayList;
 import java.awt.geom.Point2D;
 import java.awt.Graphics2D;
+import java.awt.Graphics;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Color;
@@ -13,7 +16,8 @@ import java.awt.Color;
 public class DrawingPanel extends JPanel
 {
     Color fillColor;
-    DrawingShape[] shapes=new DrawingShape[1];
+    ArrayList<DrawingShape> shapes=new ArrayList<DrawingShape>();
+    
     /**
      * Default constructor for objects of class DrawingPanel
      */
@@ -45,17 +49,20 @@ public class DrawingPanel extends JPanel
     }
     public void addCircle(Point2D.Double center, double radius, Color color)
     {
-        shapes[0] = new Circle(center, radius, color);
+        shapes.add( new Circle(center, radius, getColor()) );
+        repaint();
     }
     public void addSquare(Point2D.Double center, double radius, Color color)
     {
-        shapes[1] = new Square(center, radius, color);
+        shapes.add( new Square(center, radius, getColor()) );
+        repaint();
     }
-    public void paintComponent(Graphics2D g2)
+    public void paintComponent(Graphics g)
     {
-        for(DrawingShape shape:shapes)
+        Graphics2D g2 = (Graphics2D) g;
+        for(int i = 0; i<0; i++)
         {
-            shape.draw(g2, true);
+            ( shapes.get(i) ).draw(g2, true);
         }
     }
 }

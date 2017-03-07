@@ -1,5 +1,7 @@
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Ellipse2D;
 import java.awt.BorderLayout;
 import java.awt.geom.Point2D;
 import java.awt.Graphics2D;
@@ -64,7 +66,6 @@ public class ControlPanel extends JPanel
             }else{
                 canvas.addSquare(CENTER,1,canvas.getColor());
             }
-            canvas.paintComponent(Graphics2D);
         }
     }
 }
